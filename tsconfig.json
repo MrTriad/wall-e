@@ -1,0 +1,23 @@
+{
+    "extends": "@apify/tsconfig",
+    "compilerOptions": {
+        "module": "ES2022",
+        "target": "ES2022",
+        "outDir": "dist",
+        "noUnusedLocals": false,
+        "lib": ["DOM"],
+        "resolveJsonModule": true
+    },
+    "include": [
+        "walle.ts",
+        "config.ts",
+        "src/**/*.ts",
+        "src/**/*.py",
+        "devScripts/*",
+        "package.json"
+        ],
+    "exclude": [
+        "storage/*"
+    ],
+    "compileOnSave": true,
+}

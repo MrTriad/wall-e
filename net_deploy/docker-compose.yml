@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16rc1-alpine
+    container_name: postgres_db
+    env_file:
+      - ./.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+  tor_gateway:
+    image: osminogin/tor-simple
+    container_name: tor_gateway
+    networks:
+      - tor-network
+  http2socks5_proxy:
+    image: mosajjal/pproxy:latest-pypy
+    container_name: http2socks5_proxy
+    networks:
+      - tor-network
+    depends_on:
+      - tor_gateway
+    command: ["-l", "http://:9053", "-r", "socks5://tor_gateway:9050"]
+    ports:
+      - "9053:9053"
+
+networks:
+  tor-network:
+    driver: bridge

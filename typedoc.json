@@ -1,0 +1,20 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"includeVersion": true,
+	"entryPoints": [
+		"*.ts",
+		"src/**/*.ts"
+	],
+	"exclude": [
+		"/dist/*"
+	],
+	"out": "./docs/",
+	"jsDocCompatibility": true,
+	"navigationLinks": { 
+		"GitLab": "https://git.elmec.com/security/wall-e"
+	},
+	"pretty": true,
+	"entryPointStrategy": "expand",
+	"cleanOutputDir": true,
+	"media": "media/"
+}
